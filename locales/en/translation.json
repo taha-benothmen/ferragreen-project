@@ -1,5 +1,22 @@
 {
-  "hero": {
-    "title": "Best metal works in Tunisia"
+  "button": {
+    "plus" : "Learn More"
+  },
+  "Banner": {
+    "banner1": "Leading the Way in Metal Recycling",
+    "banner2":  "Sustainable Solutions for a Greener Future",
+    "banner3":  "Your Trusted Partner in Recycling"
+
+          
+        
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "environment": "Environment",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "blog": "Blog"
   }
 }

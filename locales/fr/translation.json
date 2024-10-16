@@ -1,5 +1,20 @@
 {
-  "hero": {
-    "title": "Le meilleur metal en tunisie"
+  "button": {
+    "plus" : "En savoir plus"
+  },
+  "Banner": {
+    "banner1": "À la pointe du recyclage des métaux" ,
+    "banner2": "Solutions durables pour un avenir plus vert",
+    "banner3":  "Votre partenaire de confiance en recyclage"
+
+  },
+  "menu": {
+    "home": "Page d’accueil",
+    "about": "À propos",
+    "services": "Services",
+    "environment": "Environnement",
+    "pricing": "Nos tarifs",
+    "contact": "Contact",
+    "blog": "Blog"
   }
 }
