@@ -164,6 +164,16 @@
                           </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li>
+                          <div class="language-switcher">
+                            <button onclick="changeLanguage('en')">
+                              English
+                            </button>
+                            <button onclick="changeLanguage('fr')">
+                              francais
+                            </button>
+                          </div>
+                        </li>
                       </ul>
                     </div>
                   </nav>
@@ -293,10 +303,7 @@
               <div class="content-outer">
                 <div class="content-box">
                   <div class="inner text-center">
-                    <h1>
-                      Best Welding <br />
-                      & Metal Works
-                    </h1>
+                    <h1 data-i18n="hero.title"></h1>
                     <div class="link-box">
                       <a href="#" class="theme-btn btn-style-one"
                         ><span>Discover More</span></a
@@ -1160,6 +1167,10 @@
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <span class="flaticon-right-arrow-4"></span>
     </div>
+    <!-- i18n  -->
+    <script src="https://unpkg.com/i18next@21.6.10/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend@1.4.3/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/jquery-i18next@1.2.2/dist/umd/jquery-i18next.min.js"></script>
 
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/popper.min.js"></script>
@@ -1179,5 +1190,39 @@
     <script src="assets/js/parallax-scroll.js"></script>
 
     <script src="assets/js/script.js"></script>
+
+    <script>
+      // Initialize i18next
+      i18next.use(i18nextHttpBackend).init(
+        {
+          lng: 'en', // Default language
+          fallbackLng: 'en',
+          debug: true,
+          backend: {
+            loadPath: '/locales/{{lng}}/translation.json', // Path to your translation files
+          },
+        },
+        function (err, t) {
+          // Once i18next is initialized, update the translations
+          updateContent();
+        }
+      );
+
+      // Function to update content based on the data-i18n attributes
+      function updateContent() {
+        document.querySelectorAll('[data-i18n]').forEach(function (element) {
+          const key = element.getAttribute('data-i18n');
+          element.innerHTML = i18next.t(key);
+        });
+      }
+
+      // Language switcher function
+      function changeLanguage(lang) {
+        i18next.changeLanguage(lang, function (err, t) {
+          if (err) return console.log('something went wrong loading', err);
+          updateContent(); // Update content when the language changes
+        });
+      }
+    </script>
   </body>
 </html>
