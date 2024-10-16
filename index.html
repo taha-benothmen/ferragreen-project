@@ -10,6 +10,10 @@
     <link href="assets/css/responsive.css" rel="stylesheet" />
     <!-- Color File -->
     <link href="assets/css/color.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css"
+      rel="stylesheet"
+    />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap"
@@ -164,14 +168,31 @@
                           </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
+                        <!-- language selector  -->
                         <li>
                           <div class="language-switcher">
-                            <button onclick="changeLanguage('en')">
-                              English
+                            <!-- Circular button showing current language flag (English by default) -->
+                            <button class="lang-btn" onclick="toggleDropdown()">
+                              <span class="flag-icon flag-icon-gb"></span>
+                              <!-- Flag for English -->
                             </button>
-                            <button onclick="changeLanguage('fr')">
-                              francais
-                            </button>
+
+                            <!-- Dropdown menu with language options -->
+                            <div class="lang-dropdown" id="langDropdown">
+                              <button onclick="changeLanguage('en')">
+                                <span class="flag-icon flag-icon-gb"></span>
+                                English
+                              </button>
+                              <button onclick="changeLanguage('fr')">
+                                <span class="flag-icon flag-icon-fr"></span>
+                                Français
+                              </button>
+                              <button onclick="changeLanguage('es')">
+                                <span class="flag-icon flag-icon-es"></span>
+                                Español
+                              </button>
+                              <!-- Add more languages as needed -->
+                            </div>
                           </div>
                         </li>
                       </ul>
@@ -1167,6 +1188,61 @@
     <div class="scroll-to-top scroll-to-target" data-target="html">
       <span class="flaticon-right-arrow-4"></span>
     </div>
+
+    <style>
+      .language-switcher {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Circular button for language flag */
+      .lang-btn {
+        background-color: #f1f1f1;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lang-btn .flag-icon {
+        font-size: 24px;
+      }
+
+      /* Dropdown styles */
+      .lang-dropdown {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        min-width: 150px;
+        z-index: 1;
+      }
+
+      .lang-dropdown button {
+        background: none;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .lang-dropdown button:hover {
+        background-color: #ddd;
+      }
+
+      .lang-dropdown .flag-icon {
+        margin-right: 10px;
+      }
+    </style>
+
     <!-- i18n  -->
     <script src="https://unpkg.com/i18next@21.6.10/dist/umd/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-http-backend@1.4.3/i18nextHttpBackend.min.js"></script>
@@ -1192,6 +1268,12 @@
     <script src="assets/js/script.js"></script>
 
     <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById('langDropdown');
+        dropdown.style.display =
+          dropdown.style.display === 'block' ? 'none' : 'block';
+      }
+
       // Initialize i18next
       i18next.use(i18nextHttpBackend).init(
         {
